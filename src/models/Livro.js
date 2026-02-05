@@ -1,5 +1,4 @@
 import mongoose, { Types } from "mongoose"
-import { required } from "nodemon/lib/config";
 
 const livroSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId },
