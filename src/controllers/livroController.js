@@ -37,13 +37,23 @@ class LivroController {
     //POST
     static async cadastrarLivros(req, res){
         try{
-            const novoLivro = await livro.create(res.body);
-        res.status(201).json(novoLivro);
+            const novoLivro = await livro.create(req.body);
+            res.status(201).json(novoLivro);
         } catch(error){
             res.status(500).json({message: `${error.message} - FALHA AO CADASTRAR LIVRO`});
         };
     };
 
+    //DELETE
+    static async deletarLivro(req, res){
+        try {
+            const id = req.params.id;
+            await livro.findByIdAndDelete(id);
+            res.status(200).json({message : "LIVRO DELETADO COM SUCESSO"});
+        } catch (error) {
+            res.status(500).json({message: `${error.message} - FALHA AO DELETAR ESTE LIVRO`})
+        }
+    };
 };
 
 export default LivroController;
