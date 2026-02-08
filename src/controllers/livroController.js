@@ -59,6 +59,17 @@ class LivroController {
             res.status(500).json({message: `${error.message} - FALHA AO DELETAR ESTE LIVRO`})
         }
     };
+
+    //QUERY PARAM - EDITORA
+    static async listarLivrosPorEditora(req, res){
+        const editora = req.query .editora;
+        try {
+            const livrosPorEditora = await livro.find({editora : editora})
+            res.status(200).json(livrosPorEditora);
+        } catch (error) {
+            res.status(500).json({message: `${error.message} - FALHA NA BUSCA`});
+        }
+    };
 };
 
 export default LivroController;
